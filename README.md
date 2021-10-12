@@ -1,5 +1,9 @@
 # Rust backend project
 
+![full workflow](https://github.com/tappoz/rust-personal-project/actions/workflows/rust.yml/badge.svg)
+
+## Overview
+
 1. HTTP REST API to create/retrieve/search "work to do": `pp_backend_api`.
 2. Postgres DB via Docker with a SQL schema: `pp_storage`.
 3. `pp_lib` Rust library sharing the business logic code.
