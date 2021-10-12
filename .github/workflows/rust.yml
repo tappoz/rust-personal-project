@@ -12,32 +12,21 @@ env:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     
-    services:
-      postgres:
-        image: postgres:12.6-alpine
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: test01
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
     - uses: actions/checkout@v2
     - name: Check environment
+      run: make version
+    - name: Install Python dependencies
+      run: make setup-python-dependencies
+    - name: Setup Docker network and services (Postgres, RabbitMQ)
       run: |
-        which rustc
-        rustc --version
-        rustup --version
-        which python
-        python -V
-#     - name: Build
-#       run: cargo build --verbose
-#     - name: Run tests
-#       run: cargo test --verbose
+        make \
+          create-docker-network \
+          create-db-docker-volume \
+          run-pp-storage \
+          test-pp-storage-connection \
+          run-pp-queue \
+          docker-ps
+          
