@@ -26,7 +26,14 @@ jobs:
           create-docker-network \
           create-db-docker-volume \
           run-pp-storage \
+          run-pp-queue
+    - name: Check and configure Docker services (Postgres, RabbitMQ)
+      run: |
+        sleep 2
+        make \
+          docker-ps \
           test-pp-storage-connection \
-          run-pp-queue \
+          create-db \
+          setup-pp-queue \
           docker-ps
           
