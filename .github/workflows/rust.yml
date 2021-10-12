@@ -41,8 +41,21 @@ jobs:
           create-db \
           setup-pp-queue \
           docker-ps
-    - name: Run Rust integration tests
+    - name: Run all Rust tests
+      run: make all-rust-tests
+    - name: Build and run the Rust backend HTTP REST API via Docker
       run: |
         make \
-          db-test \
-          queue-test
+          build-pp-backend-api \
+          run-pp-backend-api \
+          docker-ps
+    - name: Run HTTP integration tests
+      run: make http-integration-test
+    - name: Example run CLI_01
+      run: make cli-run-01
+    - name: Example run CLI_02
+      run: make cli-run-02
+    - name: Build Task Producer executable
+      run: make build-task-producer
+    - name: Build Task Consumer executable
+      run: make build-task-consumer

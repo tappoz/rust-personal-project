@@ -136,8 +136,10 @@ lint:
 		|| exit 1 ; \
 	done
 
-integration-test:
+all-rust-tests:
 	cd $(PP_LIB_PATH) && RUST_BACKTRACE=1 cargo test --no-fail-fast
+
+http-integration-test:
 	python bin/http_integration_tests.py
 
 queue-test:
