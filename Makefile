@@ -100,7 +100,7 @@ run-pp-backend-api:
 
 backend-logs:
 	@echo "$(LOG_PREFIX) $(YEL)Show the Backend API logs...$(NC)"
-	docker logs $(PP_BACKEND_API_DOCKER_CONTAINER_NAME)
+	-docker logs $(PP_BACKEND_API_DOCKER_CONTAINER_NAME)
 	@echo "$(LOG_PREFIX) $(GRN)DONE$(NC)"
 
 create-db-docker-volume:
