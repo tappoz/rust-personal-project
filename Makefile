@@ -30,6 +30,9 @@ version:
 setup-python-dependencies:
 	pip install -r $(PWD)/bin/requirements.txt
 
+setup-rust-env:
+	rustup component add rustfmt
+
 create-docker-network:
 	docker network ls
 	docker network create \
