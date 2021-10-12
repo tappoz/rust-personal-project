@@ -1,0 +1,18 @@
+[package]
+name = "pp_backend_api"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tiny_http = "0.8.2"
+serde_json = "1.0.67"
+chrono = { version = "0.4.19", features = ["serde"] }
+postgres = { version = "0.19.1", features = ["with-chrono-0_4"] }
+regex = "1.5.4"
+lazy_static = "1.4.0"
+serde = { version="1.0.130", features = ["derive"]}
+log = "0.4.14"
+env_logger = "0.9.0"
+pp_lib = { path = "../pp_lib" }

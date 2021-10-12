@@ -1,0 +1,4 @@
+requests==2.22.0
+pika==1.2.0
+black==21.8b0
+pylint==2.10.2
