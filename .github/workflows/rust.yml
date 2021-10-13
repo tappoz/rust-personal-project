@@ -49,12 +49,12 @@ jobs:
           docker-ps
     - name: Run HTTP integration tests
       run: make http-integration-test
-    - name: Example run CLI_01
-      run: make cli-run-01
-    - name: Example run CLI_02
-      run: make cli-run-02
     # Comment out for now as the Rust compiler
     # takes ages and there's no easy way to cache dependencies...
+    # - name: Example run CLI_01
+    #   run: make cli-run-01
+    # - name: Example run CLI_02
+    #   run: make cli-run-02
     # - name: Build Task Producer executable
     #   run: make build-task-producer
     # - name: Build Task Consumer executable
