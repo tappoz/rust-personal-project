@@ -42,18 +42,18 @@ fn consumer_process(consumer_id: String) {
     let res_ef = db::create_event(&mut db, e_c_start);
 
     // do the work demand computation
-    // log::info!("C-{}: Starting the calculations", consumer_id);
+    log::info!("C-{}: Starting the calculations", consumer_id);
     let mut total_value = 0;
-    // for n in 1..w.add_up_to {
-    //     // hard work here...
-    //     total_value = total_value + n;
-    //     thread::sleep(time::Duration::from_millis(100));
-    // }
-    // log::info!(
-    //     "C-{}: Done with calculations, result: {:?}",
-    //     consumer_id,
-    //     total_value
-    // );
+    for n in 1..w.add_up_to {
+        // hard work here...
+        total_value = total_value + n;
+        thread::sleep(time::Duration::from_millis(100));
+    }
+    log::info!(
+        "C-{}: Done with calculations, result: {:?}",
+        consumer_id,
+        total_value
+    );
 
     // insert row in table `events` to signal: stop working
     let e_c_stop = factory::new_event(wc_clone.as_str(), model::VAR_COMPUTE_STOP, "");
@@ -90,7 +90,17 @@ fn main() {
     sched.add(Job::new(
         task_schedule.as_str().parse().unwrap(),
         move || {
+            // TODO thread builder:
+            // let builder = thread::Builder::new()
+            // .name("foo".into());
+            // let handler = builder.spawn(|| {
+            // assert_eq!(thread::current().name(), Some("foo"))
+            // }).unwrap();
+            // TODO alternative: thread pools + Tokio tasks
+            // https://www.youtube.com/watch?v=2WXNY1ppTzY
             thread::spawn(|| {
+                // TODO retrieve the thread name from the builder!
+                // let t_id = thread::current().name().unwrap();
                 consumer_process(factory::rand_alphanumeric_any(5));
             });
         },
